@@ -15,7 +15,10 @@ fn main() -> io::Result<()> {
 
     if args.len() != 4 {
         eprintln!("Usage: {} <compression-type> <source> <target>", args[0]);
-        eprintln!("Compression types: gzip, zip");
+        println!("Compression types: gzip, zip");
+        println!("Compresses the source file to the target file");
+        println!("Example: {} gzip source.txt source.txt.gz", args[0]);
+        println!("Example: {} zip source.txt source.zip", args[0]);
         std::process::exit(1);
     }
 
@@ -26,6 +29,9 @@ fn main() -> io::Result<()> {
     if compression_type == "--help" {
         println!("Use: {} <compression-type> <source> <target>", args[0]);
         println!("Compression types: gzip, zip");
+        println!("Compresses the source file to the target file");
+        println!("Example: {} gzip source.txt source.txt.gz", args[0]);
+        println!("Example: {} zip source.txt source.zip", args[0]);
         std::process::exit(0);
     }
 
@@ -55,10 +61,10 @@ fn main() -> io::Result<()> {
     let elapsed_millis = elapsed.subsec_millis();
 
     if elapsed_secs > 60 {
-        println!("Elapsed time: {} minutes", elapsed_secs / 60);
+        println!("Time: {} minutes", elapsed_secs / 60);
     } else {
         println!(
-            "Elapsed time: {} seconds and {} milliseconds",
+            "Time: {} seconds and {} milliseconds",
             elapsed_secs, elapsed_millis
         );
     }
@@ -83,7 +89,7 @@ fn compress_gzip(input: File, output: File) -> io::Result<()> {
 
     println!("Source length: {}", format_size(source_len));
     println!("Target length: {}", format_size(target_len));
-    
+
     Ok(())
 }
 
@@ -123,12 +129,13 @@ fn format_size(size: u64) -> String {
     const GIGABYTE: u64 = MEGABYTE * 1024;
 
     if size >= GIGABYTE {
-        format!("{:.2} GB", size as f64 / GIGABYTE as f64)
-    } else if size >= MEGABYTE {
-        format!("{:.2} MB", size as f64 / MEGABYTE as f64)
-    } else if size >= KILOBYTE {
-        format!("{:.2} KB", size as f64 / KILOBYTE as f64)
-    } else {
-        format!("{} bytes", size)
+        return format!("{:.2} GB", size as f64 / GIGABYTE as f64);
     }
+    if size >= MEGABYTE {
+        return format!("{:.2} MB", size as f64 / MEGABYTE as f64);
+    }
+    if size >= KILOBYTE {
+        return format!("{:.2} KB", size as f64 / KILOBYTE as f64);
+    }
+    return format!("{} bytes", size);
 }
