@@ -14,11 +14,16 @@ fn main() -> io::Result<()> {
     let args: Vec<String> = env::args().collect();
 
     if args.len() != 4 {
-        eprintln!("Usage: {} <compression-type> <source> <target>", args[0]);
-        println!("Compression types: gzip, zip");
-        println!("Compresses the source file to the target file");
-        println!("Example: {} gzip source.txt source.txt.gz", args[0]);
-        println!("Example: {} zip source.txt source.zip", args[0]);
+        println!("\nCompresses the source file to the target file: \n");
+        eprintln!("Usage:              {} <compression-type> <source> <target>", args[0]);
+        println!("Compression types:  gzip, zip \n");
+
+        println!("Ex:                 {} gzip source.txt source.txt.gz", args[0]);
+        println!("Ex:                 {} zip source.txt source.zip \n", args[0]);
+
+        println!("gzip                {} this compresses the source file to the target file using the gzip format", args[0]);
+        println!("zip                 {} this compresses the source file to the target file using the zip format\n", args[0]);
+
         std::process::exit(1);
     }
 
@@ -27,11 +32,16 @@ fn main() -> io::Result<()> {
     let target_path = &args[3];
 
     if compression_type == "--help" {
-        println!("Use: {} <compression-type> <source> <target>", args[0]);
-        println!("Compression types: gzip, zip");
-        println!("Compresses the source file to the target file");
-        println!("Example: {} gzip source.txt source.txt.gz", args[0]);
-        println!("Example: {} zip source.txt source.zip", args[0]);
+        println!("\nCompresses the source file to the target file: \n");
+        eprintln!("Usage:              {} <compression-type> <source> <target>", args[0]);
+        println!("Compression types:  gzip, zip \n");
+
+        println!("Ex:                 {} gzip source.txt source.txt.gz", args[0]);
+        println!("Ex:                 {} zip source.txt source.zip \n", args[0]);
+
+        println!("gzip                {} this compresses the source file to the target file using the gzip format", args[0]);
+        println!("zip                 {} this compresses the source file to the target file using the zip format\n", args[0]);
+
         std::process::exit(0);
     }
 
