@@ -1,5 +1,8 @@
 # Compress
 
+![image](https://github.com/lucatsf/compress/assets/18267941/d006f553-3c95-4c0b-917c-dd8921fbf60f)
+
+
 A command-line utility for compressing files using gzip or zip formats.
 
 ## Requirements
